@@ -7,7 +7,7 @@ int main()
 
     cin >> a >> b;
 
-    if (b % a)
+    if (b % a && a % b)
     {
         cout << "No Multiples";
     }
