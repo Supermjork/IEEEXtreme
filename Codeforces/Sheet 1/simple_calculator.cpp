@@ -1,4 +1,4 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
 
 int main()
@@ -10,4 +10,6 @@ int main()
     cout << num_0 << " + " << num_1 << " = " << num_0 + num_1 << "\n";
     cout << num_0 << " * " << num_1 << " = " << num_0 * num_1 << "\n";
     cout << num_0 << " - " << num_1 << " = " << num_0 - num_1 << endl;
+
+    return 0;
 }
