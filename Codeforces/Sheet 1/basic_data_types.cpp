@@ -14,4 +14,6 @@ int main()
          << num_llng << "\n"
          << c << "\n"
          << num_f << endl ;
+
+    return 0;
 }
