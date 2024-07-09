@@ -40,9 +40,9 @@ int main()
 
     if (fib_result < 4'000'000)
     {
-        if (fib_result % 2) sum_iter += fib_result;
+        sum_iter += fib_result;
 
-        idx++;
+        idx += 3;
     }
     else
     {
@@ -50,18 +50,14 @@ int main()
     }
    }
 
-   std::cout << "[ITERATIVELY] Sum of Even Fibonacci numbers below 4,000,000 = " << sum_iter << ", with highest possible index: " << idx << "." << endl;
+   std::cout << "[ITERATIVELY] Sum of Even Fibonacci numbers below 4,000,000 = " << sum_iter << ", with highest possible index: " << idx - 3 << "." << endl;
 
    // Recognising the fibonacci sequence as a geometric sequence, we can use that to our advantage.
    // finding the maximum number of terms through:
-   // phi^n < 4,000,000 (take log_10)
-   // n log_10(phi) < log_10(4,000,000)
-   // n = ⌊log_10(4,000,000) / log_10(phi)⌋ ≈ 31
+   // phi^n/sqrt(5) < 4,000,000 (take log_phi)
+   // n = ⌊log_phi(4,000,000 * sqrt(5))⌋ ≈ 33
    double phi = (1 + sqrt(5)) / 2;
 
-   int sum_const_t = (1 - pow(phi, 31)) / (1 - phi);
-
-   std::cout << "[Constant Time] Sum of Even Fibonacci numbers below 4,000,000 = " << sum_const_t << ", Inaccurate due to Floating Point errors." << endl;
-
+   // After some digging around..
    return 0;
 }
