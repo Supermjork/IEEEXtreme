@@ -17,7 +17,7 @@ int multiples_sum(int base, int bound)
     // Number of terms until the largest multiple
     // k = a + (n - 1) * d
     int n = ((k - base) / base) + 1;
-    
+
     // Sum of arithmetic sequence
     return n * (base + k) / 2;
 }
@@ -25,7 +25,7 @@ int multiples_sum(int base, int bound)
 int main()
 {
     int sum_03, sum_05, sum_15, limit, final_sum;
-    
+
     limit = 1000;
 
     sum_03 = multiples_sum(3, limit);
