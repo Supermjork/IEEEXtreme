@@ -52,5 +52,16 @@ int main()
 
    std::cout << "[ITERATIVELY] Sum of Even Fibonacci numbers below 4,000,000 = " << sum_iter << ", with highest possible index: " << idx << endl;
 
+   // Recognising the fibonacci sequence as a geometric sequence, we can use that to our advantage.
+   // finding the maximum number of terms through:
+   // phi^n < 4,000,000 (take log_10)
+   // n log_10(phi) < log_10(4,000,000)
+   // n = ⌊log_10(4,000,000) / log_10(phi)⌋ ≈ 31
+   double phi = (1 + sqrt(5)) / 2;
+
+   int sum_const_t = (1 - pow(phi, 31)) / (1 - phi);
+
+   std::cout << sum_const_t << endl;
+
    return 0;
 }
