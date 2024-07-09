@@ -25,13 +25,6 @@ int main()
     */
    int sum_iter;
 
-   for (int i = 0; i <= 15; i++)
-   {
-    // Printing fibonacci numbers to notice an even/odd pattern (through indecies)
-    std::cout << "Fibonacci at index (" << i << ") = "<< fib(i) << endl;
-   }
-
-   // Noticing the repetition of an even number ever 2 odds.
    // We then loop (yes, O(n), get over it) until we pass 4,000,000
    int idx = 0;
    while (true)
@@ -59,5 +52,11 @@ int main()
    double phi = (1 + sqrt(5)) / 2;
 
    // After some digging around..
+   // behold a formula: sum(a^(h * k)) = (a^(h * (n + 1)) - 1) / (a^h - 1)
+   // substitute phi for a, 3 for h, 11 for n (3 * 11 = 33)
+   int sum_quick = (pow(phi, 3 * (11 + 1)) - 1) / (pow(phi, 3) - 1) / sqrt(5);
+
+    std::cout << "Sum through substitution: " << sum_quick << endl;
+
    return 0;
 }
