@@ -13,7 +13,7 @@ int main()
 
     // stripping expression of whitespaces
     string expr_stripped;
-    
+
     for (char c : expr)
     {
         if (!isspace(c))

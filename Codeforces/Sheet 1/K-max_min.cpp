@@ -9,10 +9,21 @@ int main()
 
     max = min = a;
 
-    // I will not apologise for how scuffed this is
-    (b > max)? max = b:(c > max)? max = c: max = max;
+    if (a <= b && a <= c) {
+        min = a;
+    } else if (b <= a && b <= c) {
+        min = b;
+    } else {
+        min = c;
+    }
 
-    (b < min)? min = b:(c < min)? min = c: min = min;
+    if (a >= b && a >= c) {
+        max = a;
+    } else if (b >= a && b >= c) {
+        max = b;
+    } else {
+        max = c;
+    }
 
     cout << min << ' ' << max << endl;
 
