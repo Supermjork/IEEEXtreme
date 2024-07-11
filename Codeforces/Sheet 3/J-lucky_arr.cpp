@@ -3,7 +3,7 @@ using namespace std;
 
 int main()
 {
-    int n, min_num, count_min;
+    int n, min_num, count_min = 1;
 
     cin >> n;
 
