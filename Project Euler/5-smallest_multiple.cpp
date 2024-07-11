@@ -33,12 +33,15 @@ int main()
     // Now it will be a mix-match to see what the exponent for each prime is
 
     int result = 1;
-    
-    for (int i = 2; i <= 20; ++i) {
+
+    // just add a cin >> bound if you want to customize it
+    int bound = 20;
+
+    for (int i = 2; i <= bound; ++i) {
         result = lcm(result, i);
     }
-    
-    cout << "The smallest common multiple for numbers between 1 and 10 is: " << result << endl;
-    
+
+    cout << "The smallest common multiple for numbers between 1 and " << bound << "is: " << result << endl;
+
     return 0;
 }
