@@ -21,7 +21,14 @@ void print_matrix(vector<vector<int>> matrix)
     {
         for (int j = 0; j < matrix[i].size(); j++)
         {
-            cout << matrix[i][j] << ' ';
+            if (j != matrix[i].size() - 1)
+            {
+                cout << matrix[i][j] << ' ';
+            }
+            else
+            {
+                cout << matrix[i][j];
+            }
         }
         cout << endl;
     }
