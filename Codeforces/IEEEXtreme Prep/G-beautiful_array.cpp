@@ -1,4 +1,5 @@
 #include <iostream>
+#include <algorithm>
 #include <vector>
 #include <unordered_map>
 using namespace std;
@@ -11,13 +12,12 @@ int main()
 
     while (t_cases--)
     {
-        int n, a, b;
-        bool allDivided = true;
+        int n, a_i;
+        bool divided = 1;
 
         cin >> n;
 
         vector<int> num_array(n);
-        vector<int> divisability(n);
 
         // Populate Array
         for (int i = 0; i < n; i++)
@@ -25,40 +25,28 @@ int main()
             cin >> num_array[i];
         }
 
-        // Check if each number divides
-        for (int i = 0; i < n; i++)
+        sort(num_array.begin(), num_array.end());
+
+        for (int i = 1; i < n; i++)
         {
-            for (int j = 0; j < n; j++)
+            if (num_array[i] % num_array[0] != 0)
             {
-                // Division logic
-                if (num_array[j] % num_array[i] == 0)
+                if (!a_i)
                 {
-                    divisability[j]++;
+                    a_i = num_array[i];
+                }
+                else
+                {
+                    if (num_array[i] % a_i != 0)
+                    {
+                        divided = 0;
+                        break;
+                    }
                 }
             }
         }
 
-        for (int c : divisability)
-        {
-            cout << c << ' ';
-        }
-
-        cout << endl;
-
-        for (int i = 0; i < n; i++)
-        {
-            if (divisability[i] > 0)
-            {
-                allDivided = true;
-            }
-            else
-            {
-                allDivided = false;
-                break;
-            }
-        }
-
-        if (allDivided)
+        if (divided)
         {
             cout << "Yes" << endl;
         }
