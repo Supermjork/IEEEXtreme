@@ -23,17 +23,12 @@ int main()
             cin >> num_vec[i];
         }
 
-        for (int n : num_vec)
-        {
-            cout << n << ' ';
-        }
-
         for (int i = 1; i < num_vec.size(); i++)
         {
             int n_0 = num_vec[i - 1];
             int n_1 = num_vec[i];
 
-            max_num = min(max_num, min(n_0, n_1));
+            max_num = min(max_num, max(n_0, n_1));
         }
 
         cout << max_num - 1 << endl;
