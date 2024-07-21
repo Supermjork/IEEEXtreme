@@ -1,7 +1,6 @@
 #include <iostream>
 #include <algorithm>
 #include <vector>
-#include <unordered_map>
 using namespace std;
 
 int main()
@@ -12,8 +11,8 @@ int main()
 
     while (t_cases--)
     {
-        int n, a_i;
-        bool divided = 1;
+        int n, div = 0;
+        bool isBeautiful = 1;
 
         cin >> n;
 
@@ -31,22 +30,22 @@ int main()
         {
             if (num_array[i] % num_array[0] != 0)
             {
-                if (!a_i)
+                if (div == 0)
                 {
-                    a_i = num_array[i];
+                    div = num_array[i];
                 }
                 else
                 {
-                    if (num_array[i] % a_i != 0)
+                    if (num_array[i] % div != 0)
                     {
-                        divided = 0;
+                        isBeautiful= 0;
                         break;
                     }
                 }
             }
         }
 
-        if (divided)
+        if (isBeautiful)
         {
             cout << "Yes" << endl;
         }
