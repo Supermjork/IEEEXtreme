@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 #include <algorithm>
 using namespace std;
 
@@ -8,7 +9,7 @@ int main()
 
     cin >> n;
 
-    int prices[n];
+    vector<int> prices(n);
 
     for (int i = 0; i < n; i++)
     {
@@ -24,12 +25,11 @@ int main()
         cin >> m_coins[i];
     }
 
-    sort(prices, prices + n);
+    sort(prices.begin(), prices.end());
 
     for (int i = 0; i < q; i++)
     {
-        int res = upper_bound(prices, prices + n, m_coins[i]) - prices;
-        cout << res << " ";
+        cout << upper_bound(prices.begin(), prices.end(), m_coins[i]) - prices.begin() << " ";
     }
 
     return 0;
