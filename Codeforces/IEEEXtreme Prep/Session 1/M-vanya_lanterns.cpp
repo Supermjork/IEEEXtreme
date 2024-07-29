@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <iomanip>
 #include <algorithm>
 using namespace std;
 
@@ -34,26 +35,14 @@ int main()
 
     sort(lantern_pos.begin(), lantern_pos.end());
 
-    double low, high, eps, optim;
-    low = 0;
-    high = l_street;
-    eps = 1e-9;
+    int r = max(lantern_pos[0], l_street - lantern_pos[n_lanterns - 1]) * 2;
 
-    while (high - low > eps)
+    for (int i = 1; i < n_lanterns; i ++)
     {
-        optim = low + (high - low) / 2;
-
-        if (canLightStreet(optim, lantern_pos, l_street))
-        {
-            high = optim;
-        }
-        else
-        {
-            low = optim;
-        }
+        r = max(r, lantern_pos[i] - lantern_pos[i - 1]);
     }
 
-    cout << optim << endl;
+    cout << fixed << setprecision(10) << (double) r / 2.0 << endl;
 
     return 0;
 }
