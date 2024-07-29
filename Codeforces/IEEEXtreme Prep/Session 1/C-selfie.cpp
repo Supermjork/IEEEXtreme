@@ -35,8 +35,7 @@ int main()
             long long a = para_coeffs[i][0];
             long long b = para_coeffs[i][1];
             long long c = para_coeffs[i][2];
-
-            vector<int> accepted;
+            bool accepted = false;
 
             for (int j = 0; j < n_lines; j++)
             {
@@ -44,18 +43,15 @@ int main()
 
                 if (((b - m) * (b - m)) < (4 * a * c))
                 {
-                    accepted.push_back(m);
+                    cout << "Yes" << '\n' << m << '\n';
+                    accepted = true;
                     break;
                 }
             }
 
-            if (accepted.size() > 0)
+            if (!accepted)
             {
-                cout << "Yes" << '\n' << accepted[0] << endl;
-            }
-            else
-            {
-                cout << "No" << '\n' << endl;
+                cout << "No" << '\n';
             }
 
         }
