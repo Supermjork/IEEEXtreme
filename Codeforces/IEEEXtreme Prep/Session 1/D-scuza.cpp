@@ -3,13 +3,20 @@
 #include <vector>
 using namespace std;
 
-long long sum_until(vector<long long> iterable, int idx)
+long long sum_until(vector<long long> iterable, int q)
 {
     long long sum = 0;
 
-    for (int i = 0; i < idx; i++)
+    for (int i = 0; i < iterable.size(); i++)
     {
-        sum += iterable[i];
+        if (q >= iterable[i])
+        {
+            sum += iterable[i];
+        }
+        else
+        {
+            break;
+        }
     }
 
     return sum;
@@ -37,14 +44,11 @@ int main()
         for (int i = 0; i < n_questions; i++)
         {
             cin >> questions[i];
-            questions[i]++;
         }
 
         for (int i = 0; i < n_questions; i++)
         {
-            int diff_idx = lower_bound(heights.begin(), heights.end(), questions[i]) - heights.begin();
-
-            long long max_h = sum_until(heights, diff_idx);
+            long long max_h = sum_until(heights, questions[i]);
 
             cout << max_h << ' ';
         }
