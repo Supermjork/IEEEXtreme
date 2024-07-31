@@ -3,25 +3,6 @@
 #include <vector>
 using namespace std;
 
-long long sum_until(vector<long long> iterable, int q)
-{
-    long long sum = 0;
-
-    for (int i = 0; i < iterable.size(); i++)
-    {
-        if (q >= iterable[i])
-        {
-            sum += iterable[i];
-        }
-        else
-        {
-            break;
-        }
-    }
-
-    return sum;
-}
-
 int main()
 {
     int t;
@@ -32,25 +13,38 @@ int main()
         int n_steps, n_questions;
         cin >> n_steps >> n_questions;
 
-        vector<long long> heights(n_steps);
+        vector<int> h_differences;
+        vector<long long> heights;
 
-        vector<int> questions(n_questions);
+        heights.push_back(0);
 
         for (int i = 0; i < n_steps; i++)
         {
-            cin >> heights[i];
+            int x;
+
+            cin >> x;
+
+            heights.push_back(heights.back() + x);
+
+            if (i == 0)
+            {
+                h_differences.push_back(x);
+            }
+            else
+            {
+                h_differences.push_back(max(h_differences.back(), x));
+            }
         }
 
         for (int i = 0; i < n_questions; i++)
         {
-            cin >> questions[i];
-        }
+            int q;
 
-        for (int i = 0; i < n_questions; i++)
-        {
-            long long max_h = sum_until(heights, questions[i]);
+            cin >> q;
 
-            cout << max_h << ' ';
+            int idx = upper_bound(h_differences.begin(), h_differences.end(), q) - h_differences.begin();
+
+            cout << heights[idx] << ' ';
         }
 
         cout << '\n';
