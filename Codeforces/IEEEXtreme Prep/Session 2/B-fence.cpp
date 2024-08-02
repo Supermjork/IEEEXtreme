@@ -2,43 +2,35 @@
 #include <vector>
 using namespace std;
 
-int main()
-{
-    int n_planks, piano_width, inter_sum, min_sum, window_start;
-    min_sum = INT_MAX;
-    inter_sum = 0;
-    window_start = 1;
+int main() {
+    int n_planks, piano_width, min_sum, current_sum, min_index;
+    min_sum = 0;
+    current_sum = 0;
+    min_index = 0;
 
     cin >> n_planks >> piano_width;
 
-    vector<int> plank_heights(n_planks + 1);
-    plank_heights.push_back(0);
+    vector<int> heights(n_planks);
 
-    for (int i = 1; i <= n_planks; i++)
-    {
-        cin >> plank_heights[i];
+    for (int i = 0; i < n_planks; ++i) {
+        cin >> heights[i];
+    }
 
-        inter_sum += plank_heights[i];
+    for (int i = 0; i < piano_width; i++) {
+        current_sum += heights[i];
+    }
 
-        if (i == piano_width)
-        {
-            min_sum = inter_sum;
-            window_start = i - piano_width;
-        }
+    min_sum = current_sum;
 
-        if (i > piano_width)
-        {
-            inter_sum -= plank_heights[i - piano_width];
-
-            if (inter_sum < min_sum)
-            {
-                min_sum = inter_sum;
-                window_start = i - piano_width + 1;
-            }
+    for (int i = 1; i <= n_planks - piano_width; i++) {
+        current_sum = current_sum - heights[i - 1] + heights[i + piano_width - 1];
+        if (current_sum < min_sum) {
+            min_sum = current_sum;
+            min_index = i;
         }
     }
 
-    cout << window_start;
+    cout << min_index + 1 << endl;
 
     return 0;
 }
