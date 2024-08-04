@@ -23,7 +23,7 @@ int main() {
     min_sum = current_sum;
 
     for (int i = 1; i <= n_planks - piano_width; i++) {
-        current_sum = current_sum - heights[i - 1] + heights[i + piano_width - 1];
+        current_sum -= heights[i - 1] + heights[i + piano_width - 1];
         if (current_sum < min_sum) {
             min_sum = current_sum;
             min_index = i;
