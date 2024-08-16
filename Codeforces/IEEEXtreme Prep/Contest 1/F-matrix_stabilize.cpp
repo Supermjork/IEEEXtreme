@@ -29,56 +29,6 @@ void print_matrix(const vector<vector<int>>& matrix)
     }
 }
 
-vector<int> grab_neighbours(vector<vector<int>> matrix, int row, int col)
-{
-    int row_lim = matrix.size();
-    int col_lim = matrix[0].size();
-
-    vector<int> neighbours;
-
-    if (row > 0)
-    {
-        neighbours.push_back(matrix[row - 1][col]);
-    }
-
-    if (row < row_lim - 1)
-    {
-        neighbours.push_back(matrix[row + 1][col]);
-    }
-
-    if (col > 0)
-    {
-        neighbours.push_back(matrix[row][col - 1]);
-    }
-
-    if (col < col_lim - 1)
-    {
-        neighbours.push_back(matrix[row][col + 1]);
-    }
-
-    return neighbours;
-}
-
-bool greater_than_neighbours(int current_cell, vector<int> neighbours)
-{
-    bool isGreater = false;
-
-    for (int i = 0; i < neighbours.size(); i++)
-    {
-        if (current_cell > neighbours[i])
-        {
-            isGreater = true;
-        }
-        else
-        {
-            isGreater = false;
-            break;
-        }
-    }
-
-    return isGreater;
-}
-
 int main()
 {
     int rows, cols, tcases;
@@ -87,7 +37,6 @@ int main()
 
     while(tcases--)
     {
-        bool unstable = true;
         cin >> rows >> cols;
 
         vector<vector<int>> in_matrix(rows, vector<int>(cols));
@@ -99,12 +48,29 @@ int main()
         {
             for (int j = 0; j < cols; j++)
             {
-                vector<int> neighbours = grab_neighbours(in_matrix, i, j);
+                int strict_great = 0;
 
-                while (greater_than_neighbours(in_matrix[i][j], neighbours))
+                if (i < rows - 1)
                 {
-                    in_matrix[i][j]--;
+                    strict_great = max(in_matrix[i + 1][j], strict_great);
                 }
+
+                if (i > 0)
+                {
+                    strict_great = max(in_matrix[i - 1][j], strict_great);
+                }
+
+                if (j < cols - 1)
+                {
+                    strict_great = max(in_matrix[i][j + 1], strict_great);
+                }
+
+                if (j > 0)
+                {
+                    strict_great = max(in_matrix[i][j - 1], strict_great);
+                }
+
+                if (in_matrix[i][j] > strict_great) in_matrix[i][j] = strict_great;
             }
         }
 
