@@ -9,26 +9,30 @@ int main()
     while (t--)
     {
         int a, b, c, d;
+        string interceptor;
 
         cin >> a >> b >> c >> d;
 
-        if (a > b)
+        for (int i = 1; i <= 12; i++)
         {
-            swap(a, b);
+            if ((i == a) || (i == b))
+            {
+                interceptor += 'a';
+            }
+
+            if ((i == c) || (i == d))
+            {
+                interceptor += 'b';
+            }
         }
 
-        if (c > d)
+        if ((interceptor == "baba") || (interceptor == "abab"))
         {
-            swap(c, d);
-        }
-
-        if ((a > c && b > d) || (c > a && b > d))
-        {
-            cout << "Yes" << endl;
+            cout << "Yes\n";
         }
         else
         {
-            cout << "No" << endl;
+            cout << "No\n";
         }
     }
 
